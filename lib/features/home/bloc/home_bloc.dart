@@ -34,25 +34,21 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       HomeInitialEvent event, Emitter<HomeState> emit) async {
     emit(HomeLoadingState());
     await Future.delayed(const Duration(seconds: 3));
-    if (GroceryData.groceryProducts == null) {
-      emit(HomeErrorState());
-    } else {
-      emit(
-        HomeLoadedSuccuessState(
-          products: GroceryData.groceryProducts
-              .map(
-                (e) => ProductModelData(
-                  id: e['id'],
-                  name: e['name'],
-                  description: e['description'],
-                  price: e['price'],
-                  imageUrl: e['imageUrl'],
-                ),
-              )
-              .toList(),
-        ),
-      );
-    }
+    emit(
+      HomeLoadedSuccuessState(
+        products: GroceryData.groceryProducts
+            .map(
+              (e) => ProductModelData(
+                id: e['id'],
+                name: e['name'],
+                description: e['description'],
+                price: e['price'],
+                imageUrl: e['imageUrl'],
+              ),
+            )
+            .toList(),
+      ),
+    );
   }
 
   FutureOr<void> homeProductWishlistButtomClickEvent(

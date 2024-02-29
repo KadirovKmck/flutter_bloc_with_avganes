@@ -6,3 +6,7 @@ sealed class CartEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class CartInitialEvent extends CartEvent {}
+
+class CartRemoveFromCartEvent extends CartEvent {}
